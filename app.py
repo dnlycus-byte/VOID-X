@@ -301,6 +301,29 @@ async def _set_guild(update: Update, context: ContextTypes.DEFAULT_TYPE,
     )
 
 
+async def cmd_setrole(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    if not is_admin(update):
+        return
+    if len(context.args) < 2:
+        return await update.message.reply_text(
+            "Usage: `/setrole UID officer` or `/setrole UID bot`",
+            parse_mode=ParseMode.MARKDOWN,
+        )
+    uid = str(context.args[0])
+    role = str(context.args[1]).lower()
+    account = store.get(uid)
+    if not account:
+        return await update.message.reply_text(
+            f"⚠️ `{uid}` not found.", parse_mode=ParseMode.MARKDOWN
+        )
+    await store.update(uid, role=role)
+    await update.message.reply_text(
+        f"✅ `{uid}` role set to `{role}`.",
+        parse_mode=ParseMode.MARKDOWN,
+        reply_markup=ui.main_menu(True),
+    )
+
+
 async def cmd_accept(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     if not is_admin(update):
         return
@@ -600,6 +623,7 @@ def build_app() -> Application:
     app.add_handler(CommandHandler("restart", cmd_restart))
     app.add_handler(CommandHandler("clanjoin", cmd_clanjoin))
     app.add_handler(CommandHandler("guild", cmd_guild))
+    app.add_handler(CommandHandler("setrole", cmd_setrole))
     app.add_handler(CommandHandler("accept", cmd_accept))
 
     app.add_handler(CallbackQueryHandler(on_callback))
