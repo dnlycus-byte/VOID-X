@@ -1,0 +1,17 @@
+[
+  {
+    "uid": "8283599493",
+    "password": "CVE2X1SO7AZBRHH0OKEO",
+    "nickname": "",
+    "role": "officer",
+    "in_guild": true,
+    "region": "IND",
+    "device_id": null,
+    "paused": false,
+    "added_at": 1750000000,
+    "last_token": 0,
+    "status": "idle",
+    "joined_guilds": ["3038929979"],
+    "stats": { "joins": 0, "errors": 0 }
+  }
+]
