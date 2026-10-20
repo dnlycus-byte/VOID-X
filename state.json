@@ -1,0 +1,10 @@
+{
+  "guild": {
+    "id": "3038929979",
+    "region": "IND"
+  },
+  "settings": {
+    "auto_join_on_first_cycle": true
+  },
+  "accepted_uids": []
+}
